@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="img/icon.png">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+
+    <title>Login - ChatApp</title>
+</head>
+<body class="text-center">
+    <div id="alert" class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';window.location = '/'">&times;</span> 
+      <strong>Invalid!</strong>The nickname you entered was already taken.
+    </div>          
+    <form action="/chat" class="form-signin">
+      <img class="mb-4" src="img/icon.png" alt="chatapp icon" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">ChatApp sign in</h1>
+      <label for="username" class="sr-only">Enter your name</label>
+      <input name="username" type="text" id="username" class="form-control" placeholder="nickname" required autofocus>
+        <br>
+        <select name="room" class="form-select btn btn-secondary">
+          <option value="1">Chat Room 1</option>
+          <option value="2">Chat Room 2</option>
+          <option value="3">Chat Room 3</option>
+          <option value="4">Chat Room 4</option>
+          <option value="5">Chat Room 5</option>
+        </select>
+        <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Enter Room</button>
+      <p class="mt-5 mb-3 text-muted">Alp Niksarlı &copy; 2021</p>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js" integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ==" crossorigin="anonymous"></script>
+    <script>
+      var alertBox = document.querySelector("#alert");
+      var closeBtn = document.querySelector(".closebtn");
+
+      const errorState = Qs.parse(location.search, {
+        ignoreQueryPrefix: true
+      });
+
+      closeBtn.style.cursor = "pointer";
+      if (errorState.error == "true") {
+        alertBox.style.display = "flex";
+      }
+    </script>
+  </body>
+</html>

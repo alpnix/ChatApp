@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Alp Niksarlı">
+    <meta name="keywords" content="chatting, websockets, whatsapp">
+
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+
+    <title>ChatApp - Alp Niksarlı</title>
+</head>
+<body>
+    <div id="container">
+        <div id="alert" class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>Invalid!</strong> The url you entered is invalid.
+          </div>          
+        <section class="sidebar">
+            <div class="sidebar-top bg-grey">
+                <div class="contact-info">
+                    <img src="img/guest_user.png" alt="profile photo" class="profile-photo photo">
+                    <div class="person-name">Tester</div>
+                </div>
+                <div class="icons">
+                    <i class="fas fa-wifi fa-lg"></i>
+                    <i class="fas fa-cog fa-lg"></i>   
+                </div>
+            </div>
+            <div class="search-room inputBox">
+                <div class="searchBar">
+                    <i class="fas fa-search fa-lg search-icon"></i>
+                    <input type="text" placeholder="Search chat" class="search-input">
+                </div>
+            </div>
+            <div class="room">
+                <img src="img/guest_user.png" alt="profile photo" class="group-photo photo">
+                <div class="group-info">
+                    <div class="group-name">Test Room</div>
+                    <div class="last-msg subTitle">This is the last message!</div>
+                </div>
+            </div>
+            <div class="users">
+                <h3 class="user-header"><i class="fas fa-users"></i> Participants</h3>
+                <div class="user-list">
+                    <ul>
+
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="current-room">
+            <div class="chat-top bg-grey">
+                <div class="contact-info">
+                    <img src="img/guest_user.png" alt="profile photo" class="profile-photo photo">
+                    <div class="person-name group-name">Test Room</div>
+                </div>
+                <div class="icons">
+                    <i class="fas fa-search fa-lg" ></i>
+                    <i class="fas fa-images fa-lg images-btn" data-target="#backgroundModal" data-toggle="modal"></i>
+                    <div class="modal fade" id="backgroundModal" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="backgroundModalLabel">Change Background</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form id="bg-form">
+                                <div class="form-group">
+                                  <label for="recipient-name" class="col-form-label">Enter image url:</label>
+                                  <input autocomplete="off" autofocus type="text" class="form-control" id="bg-url">
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" 
+                              data-dismiss="modal">Close</button>
+                              <button type="button" aria-label="Close" data-dismiss="modal" class="btn btn-primary change-bg ">Change Background</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    
+                    <i data-toggle="modal" role="button" type="button" data-target="#signOutModal" class="fas fa-sign-out-alt fa-lg"></i>
+                </div>
+                <div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="signOutModalLabel">Sure to Exit?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to exit the room?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger quit">Exit</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+
+            <div class="main-chat">
+                <!-- <div class="message warning-msg msg bg-warning">
+                    <div class="subTitle">
+                        <div class="sender"></div>
+                        <div class="time"></div>
+                    </div>
+                    <div class="msg-content">Room no 1 chat has started!</div>
+                </div>
+                <div class="message others-msg msg bg-secondary">
+                    <div class="subTitle">
+                        <div class="sender">Room 1</div>
+                        <div class="time">12:09pm</div>
+                    </div>
+                    <div class="msg-content">This is a test message</div>
+                </div>
+                <div class="message your-msg msg bg-primary">
+                    <div class="subTitle">
+                        <div class="time">12:08pm</div>
+                    </div>
+                    <div class="msg-content">This is a test message</div>
+                </div>
+                <div class="message others-msg msg bg-secondary">
+                    <div class="subTitle">
+                        <div class="sender">Room 1</div>
+                        <div class="time">12:10pm</div>
+                    </div>
+                    <div class="msg-content">This is a test message</div>
+                </div> -->
+            </div>
+
+            <div class="chat-bottom inputBox bg-grey">
+                <i class="far fa-smile fa-lg"></i>
+                <form action="" id="chatForm">
+                    <input placeholder="Type a message" autofocus autocomplete="off" type="text" name="msg" id="msg">
+                    <button type="submit" class="fas fa-microphone fa-lg mic"></button>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js" integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ==" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/socket.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
