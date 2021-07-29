@@ -98,6 +98,6 @@ io.on("connection", socket => {
 })
 
 // listen on port 3000 
-server.listen(PORT, () => {
+server.listen(process.env.PORT || PORT, () => {
     console.log(`server is running on port number ${PORT}`);
 })
